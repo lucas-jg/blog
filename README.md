@@ -1,3 +1,21 @@
+## Blog project
+
+## 폴더 구조
+
+- components : 리덕스 상태에 연결되지 않는 프리젠테이셔널 컴포넌트
+- containers : 리덕스 상태와 연결된 컨테이너 컴포넌트
+- lib : 백엔드 API 함수들과 코드 스필리팅에 사용되는 asyncRoute
+- pages : 라우터에서 사용할 각 페이지 컴포넌트
+- store : Ducks 구조를 적용시킨 리덕스 모듈들과 스토어 생성 함수
+- styles : 폰트, 색상, 반응형 디자인도구, 그림자 생성 함수 등 프로젝트에서 전역으로 사용되는 스타일
+
+## Redux State
+
+- base : 로그인상태
+- editor : 마크다운 에디터 상태
+- list : 포스트 목록 상태
+- post : 단일 포스트 상태
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
