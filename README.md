@@ -16,6 +16,19 @@
 - list : 포스트 목록 상태
 - post : 단일 포스트 상태
 
+## Middleware
+
+- redux-pender
+
+## Router
+
+- 홈 : Listpage.js
+- 포스트 목록 : Listpage.js
+- 포스트 목록(태그 설정) : Listpage.js
+- 포스트 읽기 : PostPage.js
+- 에디터 : EditorPage.js
+- 404 페이지 : NotFoundPage.js
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
