@@ -1,8 +1,8 @@
-import { createStore, applyMiddleware, compose, combinReducers } from "redux";
+import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import penderMiddleware from "redux-pender";
 import * as modules from "./modules";
 
-const reducers = combinReducers(modules);
+const reducers = combineReducers(modules);
 const middlewares = [penderMiddleware()];
 
 // 개발 모드일 때만 Redux Devtools를 적용
