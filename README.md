@@ -1,5 +1,7 @@
 ## Blog project
 
+- Trello : https://trello.com/b/nIJnL8Pk/blog
+
 ## 폴더 구조
 
 - components : 리덕스 상태에 연결되지 않는 프리젠테이셔널 컴포넌트
