@@ -1,1 +1,1 @@
-export { default } from "./PateTemplate";
+export { default } from "./PageTemplate";
