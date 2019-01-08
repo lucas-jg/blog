@@ -51,7 +51,7 @@
   &:hover {
     @include material-shadow(2, 0.5); // 마우스가 있으면 그림자 생성 모든 테마에 적용됨
   }
-  &.disable {
+  &.disabled {
     background: $oc-gray-4;
     color: $oc-gray-6;
     cursor: default;
