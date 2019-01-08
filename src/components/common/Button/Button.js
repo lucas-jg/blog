@@ -17,7 +17,7 @@ const Button = ({ children, to, onClick, disabled, theme = "default" }) => {
   return (
     <Element
       to={to}
-      classNames={cx("button", theme, { disabled })}
+      className={cx("button", theme, { disabled })}
       onClick={disabled ? () => null : onClick}
     >
       {children}
