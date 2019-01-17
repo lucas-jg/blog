@@ -1,15 +1,14 @@
 import React from "react";
 import PageTemplate from "components/common/PageTemplate";
-import PostInfo from "components/post/PostInfo";
-import PostBody from "components/post/PostBody";
+import PostContainer from "containers/post/PostContainer";
 
-const PostPage = () => {
-  return (
-    <PageTemplate>
-      <PostInfo />
-      <PostBody />
-    </PageTemplate>
-  );
+const PostPage = ({ match }) => {
+	const { id } = match.params;
+	return (
+		<PageTemplate>
+			<PostContainer id={id} />
+		</PageTemplate>
+	);
 };
 
 export default PostPage;
