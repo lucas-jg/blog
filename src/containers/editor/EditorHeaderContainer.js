@@ -6,53 +6,73 @@ import { withRouter } from "react-router-dom";
 
 import * as editorActions from "store/modules/editor";
 import { Set } from "immutable";
+import queryString from "query-string";
 
 class EditorHeaderContainer extends Component {
-  componentDidMount = () => {
-    const { EditorActions } = this.props;
-    EditorActions.initialize();
-  };
+	componentDidMount = () => {
+		const { EditorActions, location } = this.props;
+		EditorActions.initialize();
 
-  handleGoBack = () => {
-    const { history } = this.props;
-    history.goBack();
-  };
+		const { id } = queryString.parse(location.search);
+		if (id) {
+			EditorActions.getPost(id);
+		}
+	};
 
-  handleSubmit = async () => {
-    const { title, markdown, tags, EditorActions, history } = this.props;
+	handleGoBack = () => {
+		const { history } = this.props;
+		history.goBack();
+	};
 
-    const post = {
-      title,
-      body: markdown,
-      // 태그 텍스트를 ,로 분리시키고 앞뒤 공백을 지운 후 중복되는 값을 제거
-      tags: tags === "" ? [] : [...new Set(tags.split(",").map(tag => tag.trim()))]
-    };
+	handleSubmit = async () => {
+		const { title, markdown, tags, EditorActions, history, location } = this.props;
 
-    try {
-      await EditorActions.writePost(post);
-      // 페이지를 이동시킵니다. 주의 : postId는 위쪽에서 레퍼런스를 만들지 않고
-      // 이 자리에서 this.porps.postId를 조회해야 합니다(현재 값을 불러오기 위함)
-      history.push(`/post/${this.props.postId}`);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+		const post = {
+			title,
+			body: markdown,
+			// 태그 텍스트를 ,로 분리시키고 앞뒤 공백을 지운 후 중복되는 값을 제거
+			tags: tags === "" ? [] : [...new Set(tags.split(",").map(tag => tag.trim()))]
+		};
 
-  render() {
-    const { handleGoBack, handleSubmit } = this;
+		try {
+			const { id } = queryString.parse(location.search);
+			if (id) {
+				await EditorActions.editPost({ id, ...post });
+				history.push(`/post/${id}`);
+				return;
+			}
 
-    return <EditorHeader onGoBack={handleGoBack} onSubmit={handleSubmit} />;
-  }
+			await EditorActions.writePost(post);
+			// 페이지를 이동시킵니다. 주의 : postId는 위쪽에서 레퍼런스를 만들지 않고
+			// 이 자리에서 this.porps.postId를 조회해야 합니다(현재 값을 불러오기 위함)
+			history.push(`/post/${this.props.postId}`);
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	render() {
+		const { handleGoBack, handleSubmit } = this;
+		const { id } = queryString.parse(this.props.location.search);
+
+		return (
+			<EditorHeader
+				onGoBack={handleGoBack}
+				onSubmit={handleSubmit}
+				isEdit={id ? true : false}
+			/>
+		);
+	}
 }
 
 export default connect(
-  ({ editor }) => ({
-    title: editor.get("title"),
-    markdown: editor.get("markdown"),
-    tags: editor.get("tags"),
-    postId: editor.get("postId")
-  }),
-  dispatch => ({
-    EditorActions: bindActionCreators(editorActions, dispatch)
-  })
+	({ editor }) => ({
+		title: editor.get("title"),
+		markdown: editor.get("markdown"),
+		tags: editor.get("tags"),
+		postId: editor.get("postId")
+	}),
+	dispatch => ({
+		EditorActions: bindActionCreators(editorActions, dispatch)
+	})
 )(withRouter(EditorHeaderContainer));
