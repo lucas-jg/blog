@@ -5,9 +5,11 @@ import { pender } from "redux-pender";
 
 // action types
 const GET_POST = "post/GET_POST";
+const REMOVE_POST = "post/REMOVE_POST";
 
 // action creators
 export const getPost = createAction(GET_POST, api.getPost);
+export const removePost = createAction(REMOVE_POST, api.removePost);
 
 // initial state
 const initialState = Map({
