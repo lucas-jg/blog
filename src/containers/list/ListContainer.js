@@ -4,6 +4,7 @@ import Pagination from "components/list/Pagination";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as listActions from "store/modules/list";
+import LottieControl from "lib/lottie/LottieControl";
 
 class ListContainer extends Component {
 	getPostList = () => {
@@ -27,7 +28,7 @@ class ListContainer extends Component {
 
 	render() {
 		const { loading, posts, page, lastPage, tag } = this.props;
-		if (loading) return null;
+		if (loading) return <LottieControl />;
 
 		return (
 			<div>

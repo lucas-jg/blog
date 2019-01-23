@@ -4,6 +4,7 @@ import PostBody from "components/post/PostBody";
 import * as postActions from "store/modules/post";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import LottieControl from "lib/lottie/LottieControl";
 
 class PostContainer extends Component {
 	initalize = async () => {
@@ -21,7 +22,7 @@ class PostContainer extends Component {
 
 	render() {
 		const { loading, post } = this.props;
-		if (loading) return null;
+		if (loading) return <LottieControl />;
 
 		const { title, body, publishedDate, tags } = post.toJS();
 		return (

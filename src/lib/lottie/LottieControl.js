@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+import styles from "./LottieControl.scss";
+import classNames from "classnames/bind";
 import Lottie from "react-lottie";
 import animationData from "lib/lottie/src/hyperloading.json";
+
+const cx = classNames.bind(styles);
 
 class LottieControl extends Component {
 	constructor(props) {
@@ -19,13 +23,15 @@ class LottieControl extends Component {
 		};
 
 		return (
-			<Lottie
-				options={defaultOptions}
-				height={400}
-				width={400}
-				isStopped={this.state.isStopped}
-				isPaused={this.state.isPaused}
-			/>
+			<div className={cx("loader")}>
+				<Lottie
+					options={defaultOptions}
+					height={400}
+					width={400}
+					isStopped={this.state.isStopped}
+					isPaused={this.state.isPaused}
+				/>
+			</div>
 		);
 	}
 }
