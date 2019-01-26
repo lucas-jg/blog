@@ -13,22 +13,19 @@ export const removePost = createAction(REMOVE_POST, api.removePost);
 
 // initial state
 const initialState = Map({
-	post: Map({})
+    post: Map({})
 });
 
 // reducer
 export default handleActions(
-	{
-		...pender({
-			type: GET_POST,
-			onSuccess: (state, action) => {
-				const { data: post } = action.payload;
-				return state.set("post", fromJS(post));
-			},
-			onFailure: (state, action) => {
-				console.log("onFailure");
-			}
-		})
-	},
-	initialState
+    {
+        ...pender({
+            type: GET_POST,
+            onSuccess: (state, action) => {
+                const { data: post } = action.payload;
+                return state.set("post", fromJS(post));
+            }
+        })
+    },
+    initialState
 );
