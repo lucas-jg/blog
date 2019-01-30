@@ -10,7 +10,7 @@ const WRITE_POST = "editor/WRITE_POST";
 const GET_POST = "editor/GET_POST";
 const EDIT_POST = "editor/EDIT_POST";
 
-// action creators
+// Action creators
 export const initialize = createAction(INITIALIZE);
 export const changeInput = createAction(CHANGE_INPUT);
 export const writePost = createAction(WRITE_POST, api.writePost);
