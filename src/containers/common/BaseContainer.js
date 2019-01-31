@@ -5,26 +5,33 @@ import * as baseActions from "store/modules/base";
 import { bindActionCreators } from "redux";
 
 class BaseContainer extends Component {
-    initialize = async () => {
-        // 로그인 상태 확인(추후 작성)
-    };
+	initialize = async () => {
+		// 로그인 상태 확인(추후 작성)
+		const { BaseActions } = this.props;
 
-    componentDidMount = () => {
-        this.initialize();
-    };
+		if (localStorage.logged === "true") {
+			BaseActions.tempLogin();
+		}
 
-    render() {
-        return (
-            <div>
-                <LoginModalContainer />
-            </div>
-        );
-    }
+		BaseActions.checkLogin();
+	};
+
+	componentDidMount = () => {
+		this.initialize();
+	};
+
+	render() {
+		return (
+			<div>
+				<LoginModalContainer />
+			</div>
+		);
+	}
 }
 
 export default connect(
-    null,
-    dispatch => ({
-        BaseActions: bindActionCreators(baseActions, dispatch)
-    })
+	null,
+	dispatch => ({
+		BaseActions: bindActionCreators(baseActions, dispatch)
+	})
 )(BaseContainer);
