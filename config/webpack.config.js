@@ -581,9 +581,9 @@ module.exports = function(webpackEnv) {
 					watch: paths.appSrc,
 					silent: true,
 					formatter: typescriptFormatter
-				})
+				}),
 			// 코드 스플리팅을 위한 플러그인 추가
-			// new webpack.NormalModuleReplacementPlugin(/^page$/, "pages/index.async.js")
+			new webpack.NormalModuleReplacementPlugin(/^page$/, "pages/index.async.js")
 		].filter(Boolean),
 
 		// Some libraries import Node modules but don't use them in the browser.
