@@ -583,7 +583,7 @@ module.exports = function(webpackEnv) {
 					formatter: typescriptFormatter
 				}),
 			// 코드 스플리팅을 위한 플러그인 추가
-			new webpack.NormalModuleReplacementPlugin(/^pages$/, "pages/index.async.js")
+			// new webpack.NormalModuleReplacementPlugin(/^pages$/, "pages/index.async.js")
 		].filter(Boolean),
 
 		// Some libraries import Node modules but don't use them in the browser.
